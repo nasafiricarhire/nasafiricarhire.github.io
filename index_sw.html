@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nasafiri Car Hire | Ukodishaji Magari Tanzania</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Ionicons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <style>
+        /* --- CSS VARIABLES & THEME --- */
+        :root {
+            /* Light Theme */
+            --bg-body: #ffffff;
+            --bg-surface: #f4f4f4;
+            --bg-surface-2: #e9ecef;
+            --text-main: #1b1b1a; /* Using requested dark color for text */
+            --text-muted: #555555;
+            --primary: #1b1b1a; /* Dark almost black */
+            --accent: #ff5e14; /* Vibrant Orange */
+            --accent-hover: #e04f0d;
+            --border: #e2e8f0;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+            --shadow-hover: 0 20px 40px -10px rgba(0,0,0,0.15);
+            --modal-overlay: rgba(27, 27, 26, 0.85);
+        }
+
+        [data-theme="dark"] {
+            /* Dark Theme */
+            --bg-body: #1b1b1a; /* Requested Color */
+            --bg-surface: #262625;
+            --bg-surface-2: #333332;
+            --text-main: #f3f4f6;
+            --text-muted: #a0a0a0;
+            --primary: #ffffff; 
+            --accent: #ff5e14; /* Orange */
+            --accent-hover: #ff7536;
+            --border: #333332;
+            --shadow: 0 10px 30px -10px rgba(0,0,0,0.5);
+            --shadow-hover: 0 20px 40px -10px rgba(0,0,0,0.7);
+            --modal-overlay: rgba(0, 0, 0, 0.9);
+        }
+
+        /* --- RESET & BASE --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Manrope', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.7;
+            overflow-x: hidden;
+            padding-top: 80px; /* Offset for fixed header */
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            color: var(--text-main);
+            line-height: 1.2;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* --- UTILITIES --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 16px 36px;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            outline: none;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 94, 20, 0.2);
+        }
+
+        .btn-outline {
+            border: 2px solid var(--text-main);
+            background: transparent;
+            color: var(--text-main);
+        }
+
+        .btn-outline:hover {
+            background: var(--text-main);
+            color: var(--bg-body);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .section-header span {
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        .section-header h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        
+        .section-header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 15px 0;
+            background-color: var(--bg-body); /* Solid Background always */
+            box-shadow: var(--shadow); /* Always shadow */
+            transition: all 0.4s ease;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--accent);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .lang-switch {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--text-main);
+            border: 2px solid var(--border);
+            padding: 5px 10px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: all 0.3s;
+        }
+        
+        .lang-switch:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+        }
+
+        /* --- MOBILE MENU & BREAKPOINTS --- */
+        
+        /* Default mobile-only items are hidden */
+        .mobile-only { display: none; }
+        
+        .close-btn-container {
+            width: 100%;
+            text-align: right;
+            padding-right: 10px;
+            margin-bottom: 20px;
+        }
+
+        .close-btn-container ion-icon {
+            font-size: 2.5rem;
+            cursor: pointer;
+            color: var(--text-main);
+            transition: color 0.3s;
+        }
+        
+        .close-btn-container ion-icon:hover {
+            color: var(--accent);
+        }
+
+        .mobile-controls {
+            flex-direction: column;
+            align-items: stretch;
+            gap: 15px;
+            width: 100%;
+            margin-top: 30px;
+            border-top: 1px solid var(--border);
+            padding-top: 20px;
+        }
+        
+        .mobile-control-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            color: var(--text-main);
+            font-weight: 600;
+            font-size: 1rem;
+            background: transparent;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .mobile-control-item:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+        
+        /* Main Mobile Menu Breakpoint (909px) */
+        @media (max-width: 909px) {
+            .hero h1 { font-size: 2.8rem; }
+            .section-header h2 { font-size: 2rem; }
+            
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 85%;
+                background-color: var(--bg-body);
+                flex-direction: column;
+                justify-content: flex-start; /* Align to top */
+                align-items: center;
+                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.2);
+                z-index: 999;
+                padding: 30px; /* Add padding for internal content */
+                overflow-y: auto;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .hamburger {
+                display: block;
+            }
+            
+            /* Show close button when menu active */
+            .mobile-only.close-btn-container { display: block; }
+            
+            .modal-content {
+                padding: 30px;
+                width: 90%;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        /* 484px Breakpoint: Move Lang & Theme to Menu */
+        @media (max-width: 484px) {
+            /* Hide in header */
+            .nav-actions .lang-switch,
+            .nav-actions .theme-toggle {
+                display: none !important;
+            }
+            
+            /* Show in menu */
+            .nav-links .mobile-controls { display: flex; }
+            .mobile-control-item.lang-item,
+            .mobile-control-item.theme-item { display: flex; }
+        }
+        
+        /* 371px Breakpoint: Move Book Button to Menu */
+        @media (max-width: 371px) {
+            /* Hide header button */
+            .nav-actions .btn-primary { display: none !important; }
+            
+            /* Show menu button */
+            .nav-links .mobile-controls { display: flex; }
+            .mobile-control-item.book-item { display: flex !important; }
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh; /* Reduced slightly since header is fixed */
+            min-height: 700px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            /* Placeholder Luxury Car Image */
+            background-image: linear-gradient(rgba(27, 27, 26, 0.7), rgba(27, 27, 26, 0.5)), url('https://images.unsplash.com/photo-1617788138017-80ad40651399?q=80&w=2070&auto=format&fit=crop'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            margin-top: -80px; /* Pull up behind the header spacer */
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+            padding-top: 80px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 25px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            max-width: 600px;
+            font-weight: 300;
+        }
+
+        /* --- STATS SECTION --- */
+        .stats {
+            background-color: var(--accent);
+            padding: 60px 0;
+            color: #fff;
+            position: relative;
+            z-index: 10;
+            margin-top: -80px; /* Overlap hero slightly */
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .stat-item h3 {
+            font-size: 3rem;
+            margin-bottom: 5px;
+            color: #fff;
+        }
+
+        .stat-item p {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* --- PARTNERS SECTION --- */
+        .partners {
+            padding: 80px 0;
+            background-color: var(--bg-body);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .partners-logo-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            opacity: 0.7;
+        }
+
+        .partner-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            filter: grayscale(100%);
+            transition: all 0.3s;
+        }
+
+        .partner-logo:hover {
+            filter: grayscale(0%);
+            color: var(--accent);
+            transform: scale(1.05);
+        }
+
+        /* --- HOW IT WORKS --- */
+        .process {
+            padding: 100px 0;
+            background-color: var(--bg-surface);
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .process-step {
+            position: relative;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .step-number {
+            font-size: 4rem;
+            font-family: 'Playfair Display', serif;
+            color: var(--bg-surface-2); /* Very subtle number */
+            font-weight: 700;
+            line-height: 1;
+            margin-bottom: -25px;
+            z-index: 0;
+            position: relative;
+        }
+
+        /* Dark mode adjustment for visibility */
+        [data-theme="dark"] .step-number {
+            color: #333;
+        }
+
+        .step-icon {
+            font-size: 2.5rem;
+            color: var(--accent);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .process-step h3 {
+            margin-bottom: 10px;
+        }
+
+        /* --- TOP DESTINATIONS --- */
+        .destinations {
+            padding: 120px 0;
+            background-color: var(--bg-body);
+        }
+
+        .destinations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .dest-card {
+            height: 400px;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .dest-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .dest-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .dest-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            color: #fff;
+        }
+
+        .dest-overlay h3 {
+            color: #fff;
+            margin-bottom: 5px;
+        }
+
+        .dest-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* --- FEATURES/SERVICES --- */
+        .features {
+            background-color: var(--bg-surface);
+            padding: 120px 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--bg-body);
+            padding: 50px 40px;
+            border-radius: 4px;
+            border-bottom: 4px solid transparent;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-bottom-color: var(--accent);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: var(--accent);
+            margin-bottom: 25px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* --- FLEET SECTION --- */
+        .fleet {
+            padding: 120px 0;
+            background-color: var(--bg-body);
+        }
+
+        .fleet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 40px;
+        }
+
+        .car-card {
+            background-color: var(--bg-surface);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .car-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--accent);
+        }
+
+        .car-image {
+            height: 280px;
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .car-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .car-card:hover .car-image img {
+            transform: scale(1.1);
+        }
+
+        .car-details {
+            padding: 30px;
+        }
+
+        .car-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+
+        .car-title h3 {
+            font-size: 1.4rem;
+        }
+
+        .price {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.3rem;
+            text-align: right;
+        }
+
+        .price span {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+            display: block;
+        }
+
+        .car-specs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .spec-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials {
+            padding: 120px 0;
+            background-color: var(--bg-surface);
+            position: relative;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .testimonial-card {
+            background: var(--bg-body);
+            padding: 40px;
+            border-radius: 8px;
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .quote-icon {
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+            position: absolute;
+            top: 20px;
+            right: 20px;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--bg-surface-2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        /* --- FAQ SECTION --- */
+        .faq {
+            padding: 100px 0;
+            background-color: var(--bg-body);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 15px;
+        }
+
+        .faq-question {
+            width: 100%;
+            text-align: left;
+            padding: 20px;
+            background: none;
+            border: none;
+            color: var(--text-main);
+            font-size: 1.1rem;
+            font-weight: 600;
+            font-family: 'Manrope', sans-serif;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            color: var(--text-muted);
+            transition: all 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            padding-bottom: 20px;
+            max-height: 200px;
+        }
+
+        .faq-item.active .faq-question ion-icon {
+            transform: rotate(180deg);
+        }
+
+        /* --- CTA STRIP --- */
+        .cta-section {
+            padding: 80px 0;
+            background-color: var(--accent);
+            color: #fff;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Abstract pattern background for CTA */
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -10%;
+            width: 50%;
+            height: 200%;
+            background: rgba(255,255,255,0.1);
+            transform: rotate(20deg);
+        }
+
+        .cta-section h2 {
+            color: #fff;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-btn {
+            background-color: #fff;
+            color: var(--accent);
+            padding: 15px 40px;
+            border-radius: 4px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .cta-btn:hover {
+            background-color: #f0f0f0;
+            transform: translateY(-2px);
+        }
+
+        /* --- POPUP MODAL --- */
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--modal-overlay);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 2000;
+            backdrop-filter: blur(8px);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: var(--bg-body);
+            width: 100%;
+            max-width: 550px;
+            padding: 50px;
+            border-radius: 4px;
+            position: relative;
+            transform: translateY(30px);
+            transition: transform 0.3s ease;
+            border: 1px solid var(--border);
+        }
+
+        .modal.active .modal-content {
+            transform: translateY(0);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+            background: none;
+            border: none;
+        }
+
+        .close-modal:hover {
+            color: var(--accent);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background-color: var(--bg-surface);
+            color: var(--text-main);
+            font-family: inherit;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(255, 94, 20, 0.1);
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111110;
+            color: #fff;
+            padding: 100px 0 40px;
+            border-top: 4px solid var(--accent);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 1.3rem;
+        }
+
+        .footer-col p {
+            color: #a0aec0;
+            margin-bottom: 25px;
+        }
+
+        .footer-links li {
+            margin-bottom: 15px;
+        }
+
+        .footer-links a {
+            color: #a0aec0;
+            transition: color 0.2s;
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+            transform: translateX(5px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .social-icon:hover {
+            background-color: transparent;
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            color: #718096;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <img src="fulllogov1.png" alt="Nasafiri Logo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+                    <span style="display:none;">Nasafiri</span>
+                </a>
+
+                <ul class="nav-links" id="navLinks">
+                    <!-- Close Button (Mobile Only) -->
+                    <li class="close-btn-container mobile-only">
+                        <ion-icon name="close-outline" id="closeMenuBtn"></ion-icon>
+                    </li>
+                    
+                    <li><a href="#home">Nyumbani</a></li>
+                    <li><a href="#fleet">Magari</a></li>
+                    <li><a href="#destinations">Vivutio</a></li>
+                    <li><a href="#about">Kuhusu Sisi</a></li>
+                    <li><a href="#contact">Wasiliana</a></li>
+                    
+                    <!-- Mobile Controls (Hidden on Desktop) -->
+                    <li class="mobile-controls mobile-only">
+                        <!-- Language -->
+                        <a href="index.html" class="mobile-control-item lang-item" style="display: none;">
+                            <ion-icon name="globe-outline" style="margin-right: 8px;"></ion-icon> English Version
+                        </a>
+                        
+                        <!-- Theme Toggle -->
+                        <button class="mobile-control-item theme-item" id="mobileThemeToggle" style="display: none;">
+                             <ion-icon name="moon-outline" style="margin-right: 8px;"></ion-icon> Dark Mode
+                        </button>
+
+                        <!-- Book Button -->
+                        <button class="btn btn-primary mobile-control-item book-item" onclick="openModal('General Inquiry')" style="display: none; justify-content: center; background-color: var(--accent); color: #fff; border: none;">Weka Oda</button>
+                    </li>
+                </ul>
+
+                <div class="nav-actions">
+                    <!-- Language Switcher Desktop (Links back to English) -->
+                    <a href="index.html" class="lang-switch">
+                        <ion-icon name="globe-outline"></ion-icon> EN
+                    </a>
+                    
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle Dark Mode">
+                        <ion-icon name="moon-outline"></ion-icon>
+                    </button>
+                    
+                    <button class="btn btn-primary" onclick="openModal('General Inquiry')" style="padding: 10px 20px; font-size: 0.9rem;">Weka Oda</button>
+
+                    <div class="hamburger" id="hamburger">
+                        <ion-icon name="menu-outline"></ion-icon>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero">
+        <div class="container hero-content">
+            <span style="color: var(--accent); letter-spacing: 3px; text-transform: uppercase; font-weight: 700; margin-bottom: 20px; display: block; font-size: 0.9rem;">Huduma Bora za Usafiri Tanzania</span>
+            <h1>Gundua Tanzania kwa Uhuru Usio na Kifani.</h1>
+            <p>Kutoka safari za kiofisi Dar es Salaam hadi safari za familia Serengeti. Furahia ukodishaji wa magari wa kifahari na wa kutegemewa kulingana na safari yako.</p>
+            <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                <a href="#fleet" class="btn btn-primary">
+                    Angalia Magari <ion-icon name="arrow-forward-outline"></ion-icon>
+                </a>
+                <button onclick="openModal('Custom Trip')" class="btn" style="border: 2px solid #fff; color: #fff;">
+                    Panga Safari
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- STATS SECTION -->
+    <section class="stats" id="statsSection">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <h3 data-target="500">0</h3>
+                    <p>Magari Yaliyokodiwa</p>
+                </div>
+                <div class="stat-item">
+                    <h3 data-target="1200">0</h3>
+                    <p>Wateja Wenye Furaha</p>
+                </div>
+                <div class="stat-item">
+                    <h3 data-target="25">0</h3>
+                    <p>Aina za Magari</p>
+                </div>
+                <div class="stat-item">
+                    <h3 data-target="50">0</h3>
+                    <p>Vivutio</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PARTNERS SECTION -->
+    <section class="partners">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <span style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; color: var(--text-muted);">Inaaminiwa na Washirika wa Mashirika</span>
+            </div>
+            <div class="partners-logo-grid">
+                <!-- Using Text/Icons as placeholders for Logos -->
+                <div class="partner-logo"><ion-icon name="business"></ion-icon> TOYOTA TZ</div>
+                <div class="partner-logo"><ion-icon name="globe"></ion-icon> VODACOM</div>
+                <div class="partner-logo"><ion-icon name="shield"></ion-icon> JUBILEE</div>
+                <div class="partner-logo"><ion-icon name="construct"></ion-icon> TOTAL ENERGIES</div>
+                <div class="partner-logo"><ion-icon name="briefcase"></ion-icon> CRDB BANK</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS SECTION -->
+    <section class="process">
+        <div class="container">
+            <div class="section-header">
+                <span>Hatua Rahisi</span>
+                <h2>Jinsi Inavyofanya Kazi</h2>
+            </div>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">01</div>
+                    <ion-icon name="car-sport-outline" class="step-icon"></ion-icon>
+                    <h3>Chagua Gari</h3>
+                    <p style="color: var(--text-muted);">Pitia orodha yetu ya magari na uchague linalokufaa.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">02</div>
+                    <ion-icon name="calendar-outline" class="step-icon"></ion-icon>
+                    <h3>Weka Tarehe</h3>
+                    <p style="color: var(--text-muted);">Chagua tarehe ya kuchukua na kurudisha gari kwa urahisi.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">03</div>
+                    <ion-icon name="shield-checkmark-outline" class="step-icon"></ion-icon>
+                    <h3>Uthibitisho</h3>
+                    <p style="color: var(--text-muted);">Timu yetu itathibitisha upatikanaji na kukutumia maelezo papo hapo.</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">04</div>
+                    <ion-icon name="happy-outline" class="step-icon"></ion-icon>
+                    <h3>Furahia Safari</h3>
+                    <p style="color: var(--text-muted);">Chukua gari lako au uletewe, na ufurahie safari yako.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TOP DESTINATIONS SECTION -->
+    <section id="destinations" class="destinations">
+        <div class="container">
+            <div class="section-header">
+                <span>Hamasa ya Kusafiri</span>
+                <h2>Vivutio Bora</h2>
+                <p>Gundua uzuri wa Tanzania ukitumia magari yetu ya uhakika.</p>
+            </div>
+            <div class="destinations-grid">
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1516426122078-c23e76319801?q=80&w=2668&auto=format&fit=crop" alt="Serengeti">
+                    <div class="dest-overlay">
+                        <h3>Serengeti National Park</h3>
+                        <p>Bora Kwa: Safari za Wanyamapori, Kuona Wanyama Wakihama</p>
+                    </div>
+                </div>
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1586861635167-e5223aeb9d27?q=80&w=2536&auto=format&fit=crop" alt="Zanzibar">
+                    <div class="dest-overlay">
+                        <h3>Zanzibar Island</h3>
+                        <p>Bora Kwa: Likizo za Ufukweni, Utalii wa Stone Town</p>
+                    </div>
+                </div>
+                <div class="dest-card">
+                    <img src="https://images.unsplash.com/photo-1628178636186-b45e992161b2?q=80&w=2574&auto=format&fit=crop" alt="Mount Kilimanjaro">
+                    <div class="dest-overlay">
+                        <h3>Mount Kilimanjaro</h3>
+                        <p>Bora Kwa: Kupanda Mlima, Vivutio, Kuendesha Magari</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="features" style="background-color: var(--bg-surface);">
+        <div class="container">
+            <div class="section-header">
+                <span>Kuhusu Nasafiri</span>
+                <h2>Ubora katika Kila Maili</h2>
+                <p>Tumejitolea kutoa huduma bora zaidi ya kukodisha magari nchini Tanzania.</p>
+            </div>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <ion-icon name="shield-checkmark-outline" class="feature-icon"></ion-icon>
+                    <h3>Usalama na Bima</h3>
+                    <p>Magari yetu yote yana bima kamili na yanafanyiwa ukaguzi wa mara kwa mara ili kuhakikisha usalama wako barabarani, na kukupa amani ya moyo.</p>
+                </div>
+                <div class="feature-card">
+                    <ion-icon name="wallet-outline" class="feature-icon"></ion-icon>
+                    <h3>Bei za Uwazi</h3>
+                    <p>Huduma bora bila gharama zilizofichika. Tunatoa bei shindani kulingana na bajeti yako na muda wa safari.</p>
+                </div>
+                <div class="feature-card">
+                    <ion-icon name="headset-outline" class="feature-icon"></ion-icon>
+                    <h3>Msaada 24/7</h3>
+                    <p>Umekwama barabarani? Timu yetu ya msaada inayozungumza lugha mbili ipo tayari kukuhudumia saa 24 kwa tatizo lolote.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FLEET SECTION -->
+    <section id="fleet" class="fleet">
+        <div class="container">
+            <div class="section-header">
+                <span>Mikusanyiko Yetu</span>
+                <h2>Chagua Usafiri Wako</h2>
+            </div>
+
+            <div class="fleet-grid">
+                <!-- Car 1 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=2574&auto=format&fit=crop" alt="Toyota Prado">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Toyota Prado TX</h3>
+                            <div class="price">$80<span>/siku</span></div>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item"><ion-icon name="people-outline"></ion-icon> Viti 5</div>
+                            <div class="spec-item"><ion-icon name="speedometer-outline"></ion-icon> Auto</div>
+                            <div class="spec-item"><ion-icon name="water-outline"></ion-icon> Diesel</div>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%" onclick="openModal('Toyota Prado TX')">Ombi la Kukodi</button>
+                    </div>
+                </div>
+
+                <!-- Car 2 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1629897034267-33a55850937a?q=80&w=2670&auto=format&fit=crop" alt="Land Cruiser">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Land Cruiser V8</h3>
+                            <div class="price">$150<span>/siku</span></div>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item"><ion-icon name="people-outline"></ion-icon> Viti 7</div>
+                            <div class="spec-item"><ion-icon name="speedometer-outline"></ion-icon> Auto</div>
+                            <div class="spec-item"><ion-icon name="water-outline"></ion-icon> Petrol</div>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%" onclick="openModal('Land Cruiser V8')">Ombi la Kukodi</button>
+                    </div>
+                </div>
+
+                <!-- Car 3 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1533473359331-0135ef1b58bf?q=80&w=2670&auto=format&fit=crop" alt="Luxury Sedan">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Mercedes Benz C-Class</h3>
+                            <div class="price">$120<span>/siku</span></div>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item"><ion-icon name="people-outline"></ion-icon> Viti 4</div>
+                            <div class="spec-item"><ion-icon name="speedometer-outline"></ion-icon> Auto</div>
+                            <div class="spec-item"><ion-icon name="water-outline"></ion-icon> Petrol</div>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%" onclick="openModal('Mercedes Benz')">Ombi la Kukodi</button>
+                    </div>
+                </div>
+
+                <!-- Car 4 -->
+                <div class="car-card">
+                    <div class="car-image">
+                        <img src="https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=2670&auto=format&fit=crop" alt="Toyota Alphard">
+                    </div>
+                    <div class="car-details">
+                        <div class="car-title">
+                            <h3>Toyota Alphard</h3>
+                            <div class="price">$100<span>/siku</span></div>
+                        </div>
+                        <div class="car-specs">
+                            <div class="spec-item"><ion-icon name="people-outline"></ion-icon> Viti 7</div>
+                            <div class="spec-item"><ion-icon name="speedometer-outline"></ion-icon> Auto</div>
+                            <div class="spec-item"><ion-icon name="snow-outline"></ion-icon> AC</div>
+                        </div>
+                        <button class="btn btn-outline" style="width: 100%" onclick="openModal('Toyota Alphard')">Ombi la Kukodi</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS SECTION -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span>Maoni</span>
+                <h2>Shuhuda za Wateja</h2>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <ion-icon name="quote" class="quote-icon"></ion-icon>
+                    <p style="color: var(--text-muted); font-style: italic;">"Uzoefu bora zaidi wa kukodisha gari niliopata Dar es Salaam. Land Cruiser ilikuwa katika hali nzuri kwa safari yetu ya Mikumi."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">JD</div>
+                        <div>
+                            <h4 style="font-size: 1rem;">John Doe</h4>
+                            <span style="font-size: 0.8rem; color: var(--accent);">Mfanyabiashara</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <ion-icon name="quote" class="quote-icon"></ion-icon>
+                    <p style="color: var(--text-muted); font-style: italic;">"Huduma nzuri kwa wateja na wanazingatia muda. Dereva alikuwa mtaalamu na anaijua jiji vizuri sana."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">SM</div>
+                        <div>
+                            <h4 style="font-size: 1rem;">Sarah M.</h4>
+                            <span style="font-size: 0.8rem; color: var(--accent);">Mtalii</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <ion-icon name="quote" class="quote-icon"></ion-icon>
+                    <p style="color: var(--text-muted); font-style: italic;">"Nasafiri walifanya likizo ya familia yetu kuwa rahisi. Nawapendekeza sana kwa mtu yeyote anayetembelea Tanzania."</p>
+                    <div class="client-info">
+                        <div class="client-avatar">MK</div>
+                        <div>
+                            <h4 style="font-size: 1rem;">Michael K.</h4>
+                            <span style="font-size: 0.8rem; color: var(--accent);">Safari ya Familia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ SECTION -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <span>Maswali Yako</span>
+                <h2>Maswali ya Mara kwa Mara</h2>
+            </div>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Nahitaji nyaraka gani ili kukodi gari?
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Utahitaji leseni halali ya udereva, pasipoti au kitambulisho cha taifa, na amana ya usalama. Madereva wa kimataifa wanaweza kuhitaji leseni ya kimataifa ya udereva.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Je, mafuta yamejumuishwa kwenye bei?
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Hapana, magari yanakodishwa na tanki lililojaa na lazima yarudishwe yakiwa yamejaa. Tunaweza kupanga chaguzi za mafuta ya kulipia kabla kwa maombi.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Je, mnatoa huduma ya kujiendesha?
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Ndio, tunatoa huduma za kujiendesha na kuendeshwa na dereva. Kujiendesha kunahitaji leseni halali na mchakato mfupi wa uhakiki.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Nini kitatokea ikiwa gari litaharibika?
+                        <ion-icon name="chevron-down-outline"></ion-icon>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Tunatoa msaada wa barabarani wa saa 24/7. Ikitokea uharibifu, tutatoa gari badala yake mara moja.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA SECTION -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Je, Upo Tayari Kuanza Safari Yako?</h2>
+            <p>Weka oda ya gari lako leo na ufurahie kutembelea Tanzania kwa mtindo wa kipekee.</p>
+            <a href="#" onclick="openModal('CTA Button')" class="cta-btn">Weka Oda Sasa</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo" style="color: #fff; margin-bottom: 20px;">
+                        <img src="fulllogov1.png" alt="Logo" style="height: 30px; filter: brightness(0) invert(1);" onerror="this.style.display='none'">
+                        Nasafiri Car Hire
+                    </div>
+                    <p>Mshirika wako wa kuaminika katika kuvumbua uzuri wa Tanzania. Huduma za ukodishaji magari zenye hadhi ya juu.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Viungo vya Haraka</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Nyumbani</a></li>
+                        <li><a href="#fleet">Magari</a></li>
+                        <li><a href="#about">Kuhusu Sisi</a></li>
+                        <li><a href="#">Vigezo na Masharti</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Wasiliana Nasi</h4>
+                    <ul class="footer-links">
+                        <li><ion-icon name="location-outline" style="vertical-align: middle; margin-right: 5px;"></ion-icon> Dar es Salaam, Tanzania</li>
+                        <li><ion-icon name="call-outline" style="vertical-align: middle; margin-right: 5px;"></ion-icon> +255 123 456 789</li>
+                        <li><ion-icon name="mail-outline" style="vertical-align: middle; margin-right: 5px;"></ion-icon> info@nasafiri.co.tz</li>
+                    </ul>
+                    <div class="social-links" style="margin-top: 20px;">
+                        <a href="#" class="social-icon"><ion-icon name="logo-instagram"></ion-icon></a>
+                        <a href="#" class="social-icon"><ion-icon name="logo-facebook"></ion-icon></a>
+                        <a href="#" class="social-icon"><ion-icon name="logo-whatsapp"></ion-icon></a>
+                    </div>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2024 Nasafiri Car Hire. Haki Zote Zimehifadhiwa.
+            </div>
+        </div>
+    </footer>
+
+    <!-- RENTAL POPUP MODAL -->
+    <div class="modal" id="rentalModal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">
+                <ion-icon name="close-outline"></ion-icon>
+            </button>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <h3 style="font-size: 2rem;">Kodisha Gari</h3>
+                <p style="color: var(--text-muted);">Jaza fomu ili kutuma maombi ya kukodi</p>
+            </div>
+            
+            <form action="https://formsubmit.co/your-email@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="New Car Rental Request!">
+
+                <div class="form-group">
+                    <label>Gari Ulilochagua</label>
+                    <input type="text" id="carInput" name="car_model" class="form-control" readonly style="background-color: var(--bg-surface-2);">
+                </div>
+                
+                <div class="form-group">
+                    <label>Jina Kamili</label>
+                    <input type="text" name="name" class="form-control" placeholder="Juma Juma" required>
+                </div>
+
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <label>Namba ya Simu</label>
+                        <input type="tel" name="phone" class="form-control" placeholder="+255..." required>
+                    </div>
+                    <div>
+                        <label>Barua Pepe</label>
+                        <input type="email" name="email" class="form-control" placeholder="juma@mfano.com" required>
+                    </div>
+                </div>
+
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                    <div>
+                        <label>Tarehe ya Kuchukua</label>
+                        <input type="date" name="pickup_date" class="form-control" required>
+                    </div>
+                    <div>
+                        <label>Tarehe ya Kurudisha</label>
+                        <input type="date" name="dropoff_date" class="form-control" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center; margin-top: 10px;">
+                    Tuma Ombi
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // --- Mobile Menu ---
+        const hamburger = document.getElementById('hamburger');
+        const navLinks = document.getElementById('navLinks');
+        const closeMenuBtn = document.getElementById('closeMenuBtn');
+        const mobileThemeToggle = document.getElementById('mobileThemeToggle');
+        
+        function toggleMenu() {
+            navLinks.classList.toggle('active');
+            // Update hamburger icon
+            const icon = hamburger.querySelector('ion-icon');
+            if(navLinks.classList.contains('active')) {
+                // Menu is open, we can hide the hamburger if we want, or leave it
+                // Logic handled by css largely
+            } else {
+                // Menu is closed
+            }
+        }
+        
+        hamburger.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- Dark Mode ---
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('ion-icon');
+        const mobileThemeIcon = mobileThemeToggle.querySelector('ion-icon');
+        const html = document.documentElement;
+
+        const currentTheme = localStorage.getItem('theme');
+        if (currentTheme) {
+            html.setAttribute('data-theme', currentTheme);
+            updateIcon(currentTheme);
+        }
+
+        function toggleTheme() {
+            let theme = html.getAttribute('data-theme');
+            if (theme === 'dark') {
+                html.setAttribute('data-theme', 'light');
+                localStorage.setItem('theme', 'light');
+                updateIcon('light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                localStorage.setItem('theme', 'dark');
+                updateIcon('dark');
+            }
+        }
+
+        themeToggle.addEventListener('click', toggleTheme);
+        mobileThemeToggle.addEventListener('click', toggleTheme);
+
+        function updateIcon(theme) {
+            if (theme === 'dark') {
+                themeIcon.setAttribute('name', 'sunny-outline');
+                mobileThemeIcon.setAttribute('name', 'sunny-outline');
+                mobileThemeToggle.innerHTML = '<ion-icon name="sunny-outline" style="margin-right: 8px;"></ion-icon> Light Mode';
+            } else {
+                themeIcon.setAttribute('name', 'moon-outline');
+                mobileThemeIcon.setAttribute('name', 'moon-outline');
+                mobileThemeToggle.innerHTML = '<ion-icon name="moon-outline" style="margin-right: 8px;"></ion-icon> Dark Mode';
+            }
+        }
+
+        // --- Modal Logic ---
+        const modal = document.getElementById('rentalModal');
+        const carInput = document.getElementById('carInput');
+
+        window.openModal = function(carName) {
+            carInput.value = carName;
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            // Also close menu if open
+            navLinks.classList.remove('active');
+        }
+
+        window.closeModal = function() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // --- FAQ Logic ---
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const question = item.querySelector('.faq-question');
+            question.addEventListener('click', () => {
+                item.classList.toggle('active');
+            });
+        });
+
+        // --- Stats Animation Logic ---
+        const statsSection = document.getElementById('statsSection');
+        const stats = document.querySelectorAll('.stat-item h3');
+        let animated = false;
+
+        const animateStats = () => {
+            stats.forEach(stat => {
+                const target = +stat.getAttribute('data-target');
+                const increment = target / 100; // Speed adjustment
+                
+                const updateCount = () => {
+                    const count = +stat.innerText;
+                    if(count < target) {
+                        stat.innerText = Math.ceil(count + increment);
+                        setTimeout(updateCount, 20);
+                    } else {
+                        stat.innerText = target + "+";
+                    }
+                }
+                updateCount();
+            });
+        }
+
+        // Intersection Observer to trigger animation when section is in view
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting && !animated) {
+                    animateStats();
+                    animated = true;
+                }
+            });
+        }, { threshold: 0.5 });
+
+        observer.observe(statsSection);
+
+    </script>
+</body>
+</html>
